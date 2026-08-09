@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Lee's Place Apartelle</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: #24312b;
+      background: #f7f5ef;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    /* =========================
+       HEADER
+    ========================= */
+
+    header {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 20;
+      padding: 24px 5%;
+    }
+
+    .nav {
+      max-width: 1250px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: white;
+    }
+
+    .logo {
+      font-family: Georgia, serif;
+      font-size: 27px;
+      font-weight: bold;
+      letter-spacing: .5px;
+    }
+
+    .logo span {
+      display: block;
+      font-family: Arial, sans-serif;
+      font-size: 10px;
+      letter-spacing: 4px;
+      font-weight: normal;
+      margin-top: -3px;
+      opacity: .8;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      letter-spacing: 1px;
+      transition: .3s;
+    }
+
+    .nav-links a:hover {
+      opacity: .65;
+    }
+
+    .nav-button {
+      border: 1px solid rgba(255,255,255,.7);
+      padding: 11px 18px;
+      border-radius: 4px;
+    }
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+      min-height: 760px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+
+      background:
+        linear-gradient(
+          90deg,
+          rgba(19,35,29,.92) 0%,
+          rgba(19,35,29,.70) 42%,
+          rgba(19,35,29,.25) 100%
+        ),
+        linear-gradient(
+          135deg,
+          #274238,
+          #6c806e 55%,
+          #c9b89a
+        );
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 75% 25%, rgba(255,255,255,.18), transparent 25%),
+        linear-gradient(120deg, transparent 50%, rgba(255,255,255,.08));
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      width: 90%;
+      max-width: 1250px;
+      margin: auto;
+      color: white;
+      padding-top: 80px;
+    }
+
+    .eyebrow {
+      font-size: 12px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      opacity: .85;
+    }
+
+    .hero h1 {
+      font-family: Georgia, serif;
+      font-size: clamp(48px, 7vw, 88px);
+      font-weight: normal;
+      line-height: .98;
+      max-width: 720px;
+      margin-bottom: 25px;
+    }
+
+    .hero p {
+      max-width: 520px;
+      font-size: 17px;
+      opacity: .9;
+      margin-bottom: 35px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .primary-btn,
+    .secondary-btn {
+      display: inline-block;
+      padding: 14px 25px;
+      border-radius: 3px;
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 1.5px;
+      cursor: pointer;
+      transition: .3s;
+    }
+
+    .primary-btn {
+      background: #d9b979;
+      color: #203028;
+      border: 1px solid #d9b979;
+    }
+
+    .primary-btn:hover {
+      transform: translateY(-2px);
+      background: #ead09d;
+    }
+
+    .secondary-btn {
+      border: 1px solid rgba(255,255,255,.65);
+      color: white;
+    }
+
+    .secondary-btn:hover {
+      background: rgba(255,255,255,.12);
+    }
+
+    /* =========================
+       BOOKING BAR
+    ========================= */
+
+    .booking-wrap {
+      position: relative;
+      z-index: 10;
+      margin-top: -75px;
+      padding: 0 5%;
+    }
+
+    .booking-card {
+      max-width: 1180px;
+      margin: auto;
+      background: white;
+      box-shadow: 0 18px 45px rgba(0,0,0,.15);
+      padding: 25px;
+      border-radius: 5px;
+    }
+
+    .booking-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1.2fr .8fr .8fr 1.1fr auto;
+      gap: 14px;
+      align-items: end;
+    }
+
+    .field label {
+      display: block;
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      font-weight: bold;
+      color: #66736c;
+      margin-bottom: 7px;
+    }
+
+    .field input,
+    .field select {
+      width: 100%;
+      height: 45px;
+      border: 1px solid #d8ddd9;
+      background: #fafbf9;
+      padding: 0 12px;
+      color: #27332d;
+      border-radius: 3px;
+      outline: none;
+    }
+
+    .field input:focus,
+    .field select:focus {
+      border-color: #8b9e91;
+    }
+
+    .check-btn {
+      height: 45px;
+      padding: 0 20px;
+      border: none;
+      background: #263e34;
+      color: white;
+      font-size: 11px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: .3s;
+      white-space: nowrap;
+    }
+
+    .check-btn:hover {
+      background: #3d5a4d;
+    }
+
+    /* =========================
+       GENERAL SECTIONS
+    ========================= */
+
+    .section {
+      max-width: 1180px;
+      margin: auto;
+      padding: 100px 5%;
+    }
+
+    .section-label {
+      font-size: 10px;
+      letter-spacing: 3px;
+      color: #9b7d45;
+      font-weight: bold;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .section h2 {
+      font-family: Georgia, serif;
+      font-weight: normal;
+      font-size: clamp(34px, 4vw, 52px);
+      color: #263c33;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    .section-intro {
+      max-width: 650px;
+      color: #69756f;
+      margin-bottom: 45px;
+    }
+
+    /* =========================
+       WELCOME
+    ========================= */
+
+    .welcome {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 75px;
+      align-items: center;
+    }
+
+    .welcome-visual {
+      min-height: 450px;
+      border-radius: 4px;
+      background:
+        linear-gradient(
+          145deg,
+          rgba(39,66,56,.2),
+          rgba(217,185,121,.35)
+        ),
+        linear-gradient(135deg, #849889, #d7c7a8);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .welcome-visual::before {
+      content: "LEE'S PLACE";
+      position: absolute;
+      inset: 30px;
+      border: 1px solid rgba(255,255,255,.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-family: Georgia, serif;
+      font-size: 28px;
+      letter-spacing: 3px;
+    }
+
+    .welcome-copy p {
+      color: #66736c;
+      margin-bottom: 18px;
+    }
+
+    .gold-line {
+      width: 55px;
+      height: 2px;
+      background: #c5a365;
+      margin: 25px 0;
+    }
+
+    /* =========================
+       ROOMS
+    ========================= */
+
+    .rooms-section {
+      background: #eef0eb;
+    }
+
+    .rooms {
+      max-width: 1180px;
+      margin: auto;
+      padding: 100px 5%;
+    }
+
+    .room-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .room-card {
+      background: white;
+      overflow: hidden;
+      border-radius: 4px;
+      box-shadow: 0 8px 25px rgba(30,45,38,.06);
+      transition: .3s;
+    }
+
+    .room-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(30,45,38,.12);
+    }
+
+    .room-image {
+      height: 230px;
+      background: linear-gradient(135deg, #667d70, #d3c09a);
+    }
+
+    .room-image.family {
+      background: linear-gradient(135deg, #7c8b80, #b8a788);
+    }
+
+    .room-image.deluxe {
+      background: linear-gradient(135deg, #41594d, #c7aa73);
+    }
+
+    .room-info {
+      padding: 25px;
+    }
+
+    .room-info h3 {
+      font-family: Georgia, serif;
+      font-size: 25px;
+      font-weight: normal;
+      margin-bottom: 10px;
+      color: #263c33;
+    }
+
+    .room-info p {
+      color: #707b75;
+      font-size: 14px;
+      margin-bottom: 18px;
+    }
+
+    .room-meta {
+      display: flex;
+      justify-content: space-between;
+      border-top: 1px solid #e7e9e6;
+      padding-top: 15px;
+      font-size: 12px;
+      color: #647169;
+    }
+
+    /* =========================
+       AMENITIES
+    ========================= */
+
+    .amenities {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .amenity {
+      padding: 30px 20px;
+      text-align: center;
+      background: white;
+      border: 1px solid #e4e7e3;
+      border-radius: 4px;
+    }
+
+    .amenity-icon {
+      font-size: 27px;
+      margin-bottom: 12px;
+    }
+
+    .amenity h3 {
+      font-size: 14px;
+      margin-bottom: 5px;
+      color: #263c33;
+    }
+
+    .amenity p {
+      color: #78827d;
+      font-size: 12px;
+    }
+
+    /* =========================
+       CTA
+    ========================= */
+
+    .cta {
+      max-width: 1180px;
+      margin: 0 auto 100px;
+      width: 90%;
+      padding: 80px;
+      text-align: center;
+      color: white;
+      border-radius: 4px;
+
+      background:
+        linear-gradient(
+          rgba(31,55,45,.9),
+          rgba(31,55,45,.9)
+        ),
+        linear-gradient(135deg, #789184, #c7ad79);
+    }
+
+    .cta .section-label {
+      color: #d9b979;
+    }
+
+    .cta h2 {
+      color: white;
+      max-width: 650px;
+      margin: 0 auto 20px;
+    }
+
+    .cta p {
+      max-width: 600px;
+      margin: 0 auto 30px;
+      opacity: .85;
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      background: #1d2d26;
+      color: white;
+      padding: 60px 5% 25px;
+    }
+
+    .footer-inner {
+      max-width: 1180px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 50px;
+    }
+
+    footer h3 {
+      font-family: Georgia, serif;
+      font-size: 24px;
+      font-weight: normal;
+      margin-bottom: 15px;
+    }
+
+    footer p {
+      color: #b9c2bd;
+      font-size: 13px;
+      max-width: 350px;
+    }
+
+    .footer-title {
+      font-size: 11px;
+      letter-spacing: 2px;
+      margin-bottom: 15px;
+      color: #d9b979;
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 8px;
+      color: #c1c8c4;
+      font-size: 13px;
+    }
+
+    .copyright {
+      max-width: 1180px;
+      margin: 45px auto 0;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,.1);
+      font-size: 11px;
+      color: #89958e;
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================= */
+
+    @media (max-width: 950px) {
+
+      .nav-links {
+        display: none;
+      }
+
+      .booking-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .room-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .amenities {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .welcome {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .footer-inner {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+
+      header {
+        padding: 18px 5%;
+      }
+
+      .hero {
+        min-height: 680px;
+      }
+
+      .hero-content {
+        padding-top: 70px;
+      }
+
+      .hero h1 {
+        font-size: 48px;
+      }
+
+      .hero p {
+        font-size: 15px;
+      }
+
+      .booking-wrap {
+        margin-top: -45px;
+      }
+
+      .booking-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section,
+      .rooms {
+        padding-top: 70px;
+        padding-bottom: 70px;
+      }
+
+      .room-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .amenities {
+        grid-template-columns: 1fr;
+      }
+
+      .cta {
+        padding: 55px 25px;
+        margin-bottom: 70px;
+      }
+
+      .footer-inner {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================
+       HEADER
+  ========================= -->
+
+  <header>
+    <nav class="nav">
+
+      <a href="#home" class="logo">
+        Lee's Place
+        <span>APARTELLE</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#home">HOME</a></li>
+        <li><a href="#about">ABOUT</a></li>
+        <li><a href="#rooms">ROOMS</a></li>
+        <li><a href="#amenities">AMENITIES</a></li>
+        <li><a href="#contact">CONTACT</a></li>
+      </ul>
+
+      <a href="#booking" class="nav-button">
+        BOOK YOUR STAY
+      </a>
+
+    </nav>
+  </header>
+
+
+  <!-- =========================
+       HERO
+  ========================= -->
+
+  <main>
+
+    <section class="hero" id="home">
+
+      <div class="hero-content">
+
+        <div class="eyebrow">
+          WELCOME TO LEE'S PLACE
+        </div>
+
+        <h1>
+          A comfortable place to call home.
+        </h1>
+
+        <p>
+          Relax, recharge, and enjoy a warm and comfortable stay
+          at Lee's Place Apartelle.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#booking" class="primary-btn">
+            BOOK YOUR STAY
+          </a>
+
+          <a href="#rooms" class="secondary-btn">
+            EXPLORE ROOMS
+          </a>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         BOOKING SEARCH
+    ========================= -->
+
+    <div class="booking-wrap" id="booking">
+
+      <div class="booking-card">
+
+        <div class="booking-grid">
+
+          <div class="field">
+            <label>CHECK-IN</label>
+            <input type="date">
+          </div>
+
+          <div class="field">
+            <label>CHECK-OUT</label>
+            <input type="date">
+          </div>
+
+          <div class="field">
+            <label>ADULTS</label>
+            <select>
+              <option>1</option>
+              <option selected>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+              <option>6</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label>CHILDREN</label>
+            <select>
+              <option selected>0</option>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label>ROOM</label>
+            <select>
+              <option>Any Room</option>
+              <option>Standard Room</option>
+              <option>Family Room</option>
+              <option>Deluxe Room</option>
+            </select>
+          </div>
+
+          <button class="check-btn" type="button">
+            CHECK AVAILABILITY
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- =========================
+         ABOUT
+    ========================= -->
+
+    <section class="section" id="about">
+
+      <div class="welcome">
+
+        <div class="welcome-visual"></div>
+
+        <div class="welcome-copy">
+
+          <div class="section-label">
+            ABOUT LEE'S PLACE
+          </div>
+
+          <h2>
+            Stay comfortably.<br>
+            Feel at home.
+          </h2>
+
+          <div class="gold-line"></div>
+
+          <p>
+            Lee's Place Apartelle offers a welcoming and comfortable
+            space for guests looking for a relaxing place to stay.
+          </p>
+
+          <p>
+            Whether you're visiting for business, a family trip,
+            or simply taking time to rest, our rooms are designed
+            to give you the comfort you deserve.
+          </p>
+
+          <a href="#rooms" class="primary-btn">
+            VIEW OUR ROOMS
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         ROOMS
+    ========================= -->
+
+    <section class="rooms-section" id="rooms">
+
+      <div class="rooms">
+
+        <div class="section-label">
+          ACCOMMODATION
+        </div>
+
+        <h2>
+          Find your perfect room.
+        </h2>
+
+        <p class="section-intro">
+          Choose the room that best fits your stay. More room
+          details, photos, rates, and booking options can be
+          added here.
+        </p>
+
+        <div class="room-grid">
+
+          <article class="room-card">
+
+            <div class="room-image"></div>
+
+            <div class="room-info">
+
+              <h3>Standard Room</h3>
+
+              <p>
+                A cozy and comfortable room for guests looking
+                for a simple and relaxing stay.
+              </p>
+
+              <div class="room-meta">
+                <span>2 GUESTS</span>
+                <span>COMFORTABLE</span>
+              </div>
+
+            </div>
+
+          </article>
+
+
+          <article class="room-card">
+
+            <div class="room-image family"></div>
+
+            <div class="room-info">
+
+              <h3>Family Room</h3>
+
+              <p>
+                More space for families and groups who want
+                to stay together comfortably.
+              </p>
+
+              <div class="room-meta">
+                <span>4 GUESTS</span>
+                <span>SPACIOUS</span>
+              </div>
+
+            </div>
+
+          </article>
+
+
+          <article class="room-card">
+
+            <div class="room-image deluxe"></div>
+
+            <div class="room-info">
+
+              <h3>Deluxe Room</h3>
+
+              <p>
+                A refined and relaxing room experience for
+                guests who want extra comfort.
+              </p>
+
+              <div class="room-meta">
+                <span>2 GUESTS</span>
+                <span>DELUXE</span>
+              </div>
+
+            </div>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         AMENITIES
+    ========================= -->
+
+    <section class="section" id="amenities">
+
+      <div class="section-label">
+        EXPERIENCE
+      </div>
+
+      <h2>
+        Everything you need for a comfortable stay.
+      </h2>
+
+      <p class="section-intro">
+        We want your stay at Lee's Place to be convenient,
+        relaxing, and comfortable.
+      </p>
+
+      <div class="amenities">
+
+        <div class="amenity">
+          <div class="amenity-icon">⌁</div>
+          <h3>Free Wi-Fi</h3>
+          <p>Stay connected during your visit.</p>
+        </div>
+
+        <div class="amenity">
+          <div class="amenity-icon">♧</div>
+          <h3>Comfortable Rooms</h3>
+          <p>Relax in a welcoming space.</p>
+        </div>
+
+        <div class="amenity">
+          <div class="amenity-icon">⌂</div>
+          <h3>Parking Space</h3>
+          <p>Convenient parking for guests.</p>
+        </div>
+
+        <div class="amenity">
+          <div class="amenity-icon">♡</div>
+          <h3>Warm Hospitality</h3>
+          <p>A friendly place to stay.</p>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         CALL TO ACTION
+    ========================= -->
+
+    <section class="cta">
+
+      <div class="section-label">
+        LEE'S PLACE APARTELLE
+      </div>
+
+      <h2>
+        Your next comfortable stay starts here.
+      </h2>
+
+      <p>
+        Plan your stay and discover the comfort of Lee's Place.
+      </p>
+
+      <a href="#booking" class="primary-btn">
+        BOOK YOUR STAY
+      </a>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================
+       FOOTER
+  ========================= -->
+
+  <footer id="contact">
+
+    <div class="footer-inner">
+
+      <div>
+
+        <h3>Lee's Place</h3>
+
+        <p>
+          A comfortable and welcoming place to stay.
+          We look forward to welcoming you.
+        </p>
+
+      </div>
+
+
+      <div>
+
+        <div class="footer-title">
+          CONTACT
+        </div>
+
+        <ul class="footer-links">
+          <li>📍 Roxas City, Capiz</li>
+          <li>📞 Contact number</li>
+          <li>✉ Email address</li>
+        </ul>
+
+      </div>
+
+
+      <div>
+
+        <div class="footer-title">
+          QUICK LINKS
+        </div>
+
+        <ul class="footer-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#rooms">Rooms</a></li>
+          <li><a href="#amenities">Amenities</a></li>
+        </ul>
+
+      </div>
+
+    </div>
+
+    <div class="copyright">
+      © 2026 Lee's Place Apartelle. All rights reserved.
+    </div>
+
+  </footer>
+
+</body>
+</html>
